@@ -1,4 +1,71 @@
 # Library9
+// firebase.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAmZeIOUi-M52OG0eiy5bPFHNydAoqv8hg",
+  authDomain: "library-fbfe6.firebaseapp.com",
+  projectId: "library-fbfe6",
+  storageBucket: "library-fbfe6.firebasestorage.app",
+  messagingSenderId: "446025119683",
+  appId: "1:446025119683:web:9b4db2c4af306c12a66f76",
+  measurementId: "G-X13WFMTPMZ"
+};
+
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ورود / ثبت‌نام</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>📚 ورود / ثبت‌نام</h2>
+    <input type="email" id="email" placeholder="ایمیل" />
+    <input type="password" id="password" placeholder="رمز عبور" />
+    <button onclick="login()">ورود</button>
+    <button onclick="signup()">ثبت‌نام</button>
+  </div>
+
+  <script type="module">
+    import { auth } from './firebase.js';
+    import {
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword
+    } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+    const emailEl = document.getElementById("email");
+    const passwordEl = document.getElementById("password");
+
+    window.login = async () => {
+      try {
+        await signInWithEmailAndPassword(auth, emailEl.value, passwordEl.value);
+        location.href = "dashboard.html";
+      } catch (err) {
+        alert("❌ ورود ناموفق: " + err.message);
+      }
+    };
+
+    window.signup = async () => {
+      try {
+        await createUserWithEmailAndPassword(auth, emailEl.value, passwordEl.value);
+        location.href = "dashboard.html";
+      } catch (err) {
+        alert("❌ ثبت‌نام ناموفق: " + err.message);
+      }
+    };
+  </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -215,62 +282,4 @@
     }
   </script>
 </body>
-body {
-  font-family: sans-serif;
-  direction: rtl;
-  padding: 1rem;
-  background: #f4f4f4;
-}
-.container, .novel {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-input, select, button {
-  padding: 0.4rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  margin-top: 0.3rem;
-}
-button {
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-}
-.novel-list {
-  margin-top: 1rem;
-}
-.novel-item {
-  background: #e8f0fe;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-.actions button {
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  background-color: #6c757d;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-}
-.sort-controls, .export-links {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.export-links a {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-.export-links a:hover {
-  background-color: #0056b3;
-}
-
+</html>
