@@ -215,4 +215,62 @@
     }
   </script>
 </body>
-</html>
+body {
+  font-family: sans-serif;
+  direction: rtl;
+  padding: 1rem;
+  background: #f4f4f4;
+}
+.container, .novel {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+input, select, button {
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+.novel-list {
+  margin-top: 1rem;
+}
+.novel-item {
+  background: #e8f0fe;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.actions button {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: #6c757d;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+}
+.sort-controls, .export-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.export-links a {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.export-links a:hover {
+  background-color: #0056b3;
+}
+
